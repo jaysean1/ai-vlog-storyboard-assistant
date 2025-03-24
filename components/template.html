@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面标题 - AI Vlog分镜设计助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* 页面特定样式可以在这里添加 */
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- iOS状态栏 -->
+        <div class="ios-status-bar">
+            <div class="status-bar-left">
+                9:41
+            </div>
+            <div class="status-bar-center">
+                <!-- 动态标题 -->
+            </div>
+            <div class="status-bar-right">
+                <i data-lucide="signal-medium" width="16" height="16"></i>
+                <i data-lucide="wifi" width="16" height="16" class="ml-1"></i>
+                <i data-lucide="battery-full" width="16" height="16" class="ml-1"></i>
+            </div>
+        </div>
+        
+        <!-- 页面工具栏 -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <!-- 左侧按钮 -->
+            </div>
+            <div class="toolbar-title">
+                页面标题
+            </div>
+            <div class="toolbar-right">
+                <!-- 右侧按钮 -->
+            </div>
+        </div>
+        
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <div class="page-container">
+                <!-- 页面内容放在这里 -->
+                <div class="section-title">内容标题</div>
+                
+                <!-- 示例卡片 -->
+                <div class="card">
+                    <p>卡片内容</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="tab-bar">
+            <a href="home.html" class="tab-item active" id="home-tab">
+                <i data-lucide="home" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">首页</span>
+            </a>
+            <a href="create.html" class="tab-item" id="create-tab">
+                <i data-lucide="plus-square" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">创建</span>
+            </a>
+            <a href="ai-assistant.html" class="tab-item" id="ai-tab">
+                <i data-lucide="sparkles" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">AI助手</span>
+            </a>
+            <a href="editor.html" class="tab-item" id="projects-tab">
+                <i data-lucide="folder" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">项目</span>
+            </a>
+            <a href="profile.html" class="tab-item" id="profile-tab">
+                <i data-lucide="user" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 根据当前页面路径激活对应的标签
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const tabItems = document.querySelectorAll('.tab-item');
+            
+            tabItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                if (currentPath.includes(href)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

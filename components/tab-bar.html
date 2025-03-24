@@ -1,0 +1,42 @@
+<!-- 底部导航栏组件 -->
+<div class="tab-bar">
+    <a href="home.html" class="tab-item active" id="home-tab">
+        <i data-lucide="home" class="tab-icon" width="24" height="24"></i>
+        <span class="tab-label">首页</span>
+    </a>
+    <a href="create.html" class="tab-item" id="create-tab">
+        <i data-lucide="plus-square" class="tab-icon" width="24" height="24"></i>
+        <span class="tab-label">创建</span>
+    </a>
+    <a href="ai-assistant.html" class="tab-item" id="ai-tab">
+        <i data-lucide="sparkles" class="tab-icon" width="24" height="24"></i>
+        <span class="tab-label">AI助手</span>
+    </a>
+    <a href="editor.html" class="tab-item" id="projects-tab">
+        <i data-lucide="folder" class="tab-icon" width="24" height="24"></i>
+        <span class="tab-label">项目</span>
+    </a>
+    <a href="profile.html" class="tab-item" id="profile-tab">
+        <i data-lucide="user" class="tab-icon" width="24" height="24"></i>
+        <span class="tab-label">我的</span>
+    </a>
+</div>
+
+<script>
+    // 根据当前页面路径激活对应的标签
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        const tabItems = document.querySelectorAll('.tab-item');
+        
+        tabItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (currentPath.includes(href)) {
+                item.classList.add('active');
+            }
+        });
+        
+        // 初始化Lucide图标
+        lucide.createIcons();
+    });
+</script> 

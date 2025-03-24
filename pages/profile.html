@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - AI Vlog分镜设计助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .user-header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 24px;
+        }
+        
+        .user-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 45px;
+            margin: 0 auto 16px;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .user-bio {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--dark-gray);
+        }
+        
+        .menu-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: var(--text-color);
+        }
+        
+        .menu-text {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .menu-arrow {
+            color: var(--dark-gray);
+        }
+        
+        .pro-card {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pro-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pro-description {
+            font-size: 14px;
+            margin-bottom: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pro-button {
+            background-color: white;
+            color: #3B82F6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pro-bg {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 140px;
+            height: 140px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 70px;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- iOS状态栏 -->
+        <div class="ios-status-bar">
+            <div class="status-bar-left">
+                9:41
+            </div>
+            <div class="status-bar-center">
+                <!-- 动态标题 -->
+            </div>
+            <div class="status-bar-right">
+                <i data-lucide="signal-medium" width="16" height="16"></i>
+                <i data-lucide="wifi" width="16" height="16" class="ml-1"></i>
+                <i data-lucide="battery-full" width="16" height="16" class="ml-1"></i>
+            </div>
+        </div>
+        
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <div class="page-container">
+                <!-- 用户资料 -->
+                <div class="user-header">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="用户头像">
+                    </div>
+                    <h1 class="user-name">李明阳</h1>
+                    <p class="user-bio">vlogger & 内容创作者</p>
+                    <button class="btn btn-secondary">
+                        <i data-lucide="edit-2" width="16" height="16" class="mr-2"></i>
+                        编辑资料
+                    </button>
+                </div>
+                
+                <!-- 数据统计 -->
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">创建的项目</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">146</div>
+                        <div class="stat-label">分镜总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">已完成</div>
+                    </div>
+                </div>
+                
+                <!-- PRO会员卡 -->
+                <div class="pro-card">
+                    <div class="pro-bg"></div>
+                    <h2 class="pro-title">升级到专业版</h2>
+                    <p class="pro-description">解锁AI分镜生成、高级模板和更多功能</p>
+                    <a href="#" class="pro-button">立即升级</a>
+                </div>
+                
+                <!-- 菜单项 -->
+                <div class="menu-card">
+                    <div class="menu-item">
+                        <i data-lucide="hard-drive" class="menu-icon"></i>
+                        <span class="menu-text">我的草稿</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="bookmark" class="menu-icon"></i>
+                        <span class="menu-text">收藏的模板</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="download" class="menu-icon"></i>
+                        <span class="menu-text">下载管理</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                </div>
+                
+                <!-- 设置菜单 -->
+                <div class="menu-card">
+                    <div class="menu-item">
+                        <i data-lucide="bell" class="menu-icon"></i>
+                        <span class="menu-text">消息通知</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="settings" class="menu-icon"></i>
+                        <span class="menu-text">设置</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="help-circle" class="menu-icon"></i>
+                        <span class="menu-text">帮助与反馈</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                    <div class="menu-item">
+                        <i data-lucide="info" class="menu-icon"></i>
+                        <span class="menu-text">关于我们</span>
+                        <i data-lucide="chevron-right" class="menu-arrow" width="20" height="20"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="tab-bar">
+            <a href="home.html" class="tab-item" id="home-tab">
+                <i data-lucide="home" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">首页</span>
+            </a>
+            <a href="create.html" class="tab-item" id="create-tab">
+                <i data-lucide="plus-square" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">创建</span>
+            </a>
+            <a href="ai-assistant.html" class="tab-item" id="ai-tab">
+                <i data-lucide="sparkles" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">AI助手</span>
+            </a>
+            <a href="editor.html" class="tab-item" id="projects-tab">
+                <i data-lucide="folder" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">项目</span>
+            </a>
+            <a href="profile.html" class="tab-item active" id="profile-tab">
+                <i data-lucide="user" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 根据当前页面路径激活对应的标签
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const tabItems = document.querySelectorAll('.tab-item');
+            
+            tabItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                if (currentPath.includes(href)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - AI Vlog分镜设计助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .search-bar {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            flex: 1;
+            margin-left: 8px;
+            font-size: 16px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .featured-card {
+            height: 200px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+        
+        .project-card {
+            display: flex;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .project-thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark-gray);
+            font-size: 12px;
+        }
+        
+        .category-chips {
+            display: flex;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-bottom: 16px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .category-chips::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category-chip {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            background-color: white;
+            border-radius: 20px;
+            margin-right: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .category-chip.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- iOS状态栏 -->
+        <div class="ios-status-bar">
+            <div class="status-bar-left">
+                9:41
+            </div>
+            <div class="status-bar-center">
+                <!-- 动态标题 -->
+            </div>
+            <div class="status-bar-right">
+                <i data-lucide="signal-medium" width="16" height="16"></i>
+                <i data-lucide="wifi" width="16" height="16" class="ml-1"></i>
+                <i data-lucide="battery-full" width="16" height="16" class="ml-1"></i>
+            </div>
+        </div>
+        
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <div class="page-container">
+                <!-- 问候语与搜索栏 -->
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-2xl font-bold">你好，创作者</h1>
+                        <p class="text-gray-500">准备创作新内容了吗？</p>
+                    </div>
+                    <div class="avatar">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="用户头像">
+                    </div>
+                </div>
+                
+                <!-- 搜索栏 -->
+                <div class="search-bar mb-6">
+                    <i data-lucide="search" width="20" height="20" class="text-gray-400"></i>
+                    <input type="text" class="search-input" placeholder="搜索项目或创意...">
+                </div>
+                
+                <!-- 特色内容 -->
+                <div class="featured-card">
+                    <img src="https://images.unsplash.com/photo-1533561797500-4fad99216c2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="特色内容" class="featured-image">
+                    <div class="featured-overlay">
+                        <div class="tag tag-blue mb-2">特色指南</div>
+                        <h3 class="text-xl font-bold mb-1">Vlog分镜创作完全指南</h3>
+                        <p class="text-sm opacity-80">专业技巧让你的Vlog脱颖而出</p>
+                    </div>
+                </div>
+                
+                <!-- 分类选择 -->
+                <div class="category-chips">
+                    <div class="category-chip active">全部</div>
+                    <div class="category-chip">旅行</div>
+                    <div class="category-chip">美食</div>
+                    <div class="category-chip">生活方式</div>
+                    <div class="category-chip">户外</div>
+                    <div class="category-chip">科技</div>
+                </div>
+                
+                <!-- 项目列表标题 -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="section-title mb-0">我的项目</h2>
+                    <a href="#" class="text-primary-color font-medium text-sm">查看全部</a>
+                </div>
+                
+                <!-- 项目列表 -->
+                <div class="project-list">
+                    <!-- 项目1 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="项目缩略图" class="project-thumbnail">
+                        <div class="project-info">
+                            <div>
+                                <h3 class="project-title">东京旅行Vlog</h3>
+                                <div class="flex">
+                                    <span class="tag tag-blue">旅行</span>
+                                    <span class="tag tag-green">已完成</span>
+                                </div>
+                            </div>
+                            <div class="project-meta">
+                                <span>12个分镜</span>
+                                <span>3天前更新</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目2 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1528712306091-ed0763094c98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="项目缩略图" class="project-thumbnail">
+                        <div class="project-info">
+                            <div>
+                                <h3 class="project-title">家庭烘焙教程</h3>
+                                <div class="flex">
+                                    <span class="tag tag-orange">美食</span>
+                                    <span class="tag">进行中</span>
+                                </div>
+                            </div>
+                            <div class="project-meta">
+                                <span>8个分镜</span>
+                                <span>昨天更新</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目3 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1534957575641-c01adf0b6b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="项目缩略图" class="project-thumbnail">
+                        <div class="project-info">
+                            <div>
+                                <h3 class="project-title">科技产品开箱</h3>
+                                <div class="flex">
+                                    <span class="tag">科技</span>
+                                    <span class="tag">草稿</span>
+                                </div>
+                            </div>
+                            <div class="project-meta">
+                                <span>5个分镜</span>
+                                <span>2小时前更新</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI推荐 -->
+                <h2 class="section-title mt-8">AI推荐的分镜创意</h2>
+                <div class="card">
+                    <div class="flex items-start mb-4">
+                        <i data-lucide="sparkles" class="text-yellow-500 mr-2" width="24" height="24"></i>
+                        <div>
+                            <h3 class="section-subtitle mb-1">日落城市漫步</h3>
+                            <p class="text-gray-500 text-sm">城市景观+人物剪影+暖色调</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="grid grid-cols-3 gap-2 w-4/5">
+                            <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="参考图片" class="rounded-lg w-full h-16 object-cover">
+                            <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="参考图片" class="rounded-lg w-full h-16 object-cover">
+                            <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="参考图片" class="rounded-lg w-full h-16 object-cover">
+                        </div>
+                        <button class="btn btn-primary">使用</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 浮动操作按钮 -->
+        <a href="create.html" class="fab">
+            <i data-lucide="plus" width="24" height="24"></i>
+        </a>
+        
+        <!-- 底部导航栏 -->
+        <div class="tab-bar">
+            <a href="home.html" class="tab-item active" id="home-tab">
+                <i data-lucide="home" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">首页</span>
+            </a>
+            <a href="create.html" class="tab-item" id="create-tab">
+                <i data-lucide="plus-square" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">创建</span>
+            </a>
+            <a href="ai-assistant.html" class="tab-item" id="ai-tab">
+                <i data-lucide="sparkles" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">AI助手</span>
+            </a>
+            <a href="editor.html" class="tab-item" id="projects-tab">
+                <i data-lucide="folder" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">项目</span>
+            </a>
+            <a href="profile.html" class="tab-item" id="profile-tab">
+                <i data-lucide="user" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 根据当前页面路径激活对应的标签
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const tabItems = document.querySelectorAll('.tab-item');
+            
+            tabItems.forEach(item => {
+                item.classList.remove('active');
+                const href = item.getAttribute('href');
+                if (currentPath.includes(href)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

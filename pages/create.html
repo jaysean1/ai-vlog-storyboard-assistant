@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建项目 - AI Vlog分镜设计助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .cover-picker {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background-color: var(--light-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cover-picker-icon {
+            background-color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .template-card {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 120px;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .template-card.selected {
+            border-color: var(--primary-color);
+        }
+        
+        .template-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .template-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .template-check {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: var(--primary-color);
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            display: none;
+        }
+        
+        .template-card.selected .template-check {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- iOS状态栏 -->
+        <div class="ios-status-bar">
+            <div class="status-bar-left">
+                9:41
+            </div>
+            <div class="status-bar-center">
+                <!-- 动态标题 -->
+            </div>
+            <div class="status-bar-right">
+                <i data-lucide="signal-medium" width="16" height="16"></i>
+                <i data-lucide="wifi" width="16" height="16" class="ml-1"></i>
+                <i data-lucide="battery-full" width="16" height="16" class="ml-1"></i>
+            </div>
+        </div>
+        
+        <!-- 页面工具栏 -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <a href="home.html">
+                    <i data-lucide="arrow-left" width="24" height="24"></i>
+                </a>
+            </div>
+            <div class="toolbar-title">
+                创建新项目
+            </div>
+            <div class="toolbar-right">
+                <!-- 右侧按钮 -->
+            </div>
+        </div>
+        
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <div class="page-container">
+                <!-- 项目封面选择 -->
+                <div class="cover-picker">
+                    <i data-lucide="image" width="36" height="36" class="text-gray-400"></i>
+                    <div class="cover-picker-icon">
+                        <i data-lucide="camera" width="24" height="24"></i>
+                    </div>
+                </div>
+                
+                <!-- 项目基本信息表单 -->
+                <form>
+                    <!-- 项目名称 -->
+                    <div class="form-group">
+                        <label for="project-name" class="form-label">项目名称</label>
+                        <input type="text" id="project-name" class="input-field" placeholder="输入项目名称">
+                    </div>
+                    
+                    <!-- 项目描述 -->
+                    <div class="form-group">
+                        <label for="project-description" class="form-label">项目描述</label>
+                        <textarea id="project-description" class="input-field" rows="3" placeholder="简单描述项目内容与目标"></textarea>
+                    </div>
+                    
+                    <!-- 项目类型 -->
+                    <div class="form-group">
+                        <label class="form-label">项目类型</label>
+                        <div class="flex flex-wrap gap-2">
+                            <div class="tag tag-blue">旅行</div>
+                            <div class="tag">美食</div>
+                            <div class="tag">生活方式</div>
+                            <div class="tag">户外</div>
+                            <div class="tag">科技</div>
+                            <div class="tag">教程</div>
+                            <div class="tag">开箱</div>
+                            <div class="tag">音乐</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分镜数量 -->
+                    <div class="form-group">
+                        <label for="shots-count" class="form-label">预计分镜数量</label>
+                        <select id="shots-count" class="input-field">
+                            <option value="5">5-10个（短视频）</option>
+                            <option value="10">10-20个（标准Vlog）</option>
+                            <option value="20">20+个（长篇内容）</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 模板选择 -->
+                    <div class="form-group">
+                        <label class="form-label">使用模板（可选）</label>
+                        <div class="template-grid">
+                            <!-- 模板1 -->
+                            <div class="template-card selected">
+                                <img src="https://images.unsplash.com/photo-1484910292437-025e5d13ce87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="旅行Vlog模板" class="template-img">
+                                <div class="template-overlay">旅行Vlog</div>
+                                <div class="template-check">
+                                    <i data-lucide="check" width="14" height="14"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 模板2 -->
+                            <div class="template-card">
+                                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="美食教程模板" class="template-img">
+                                <div class="template-overlay">美食教程</div>
+                                <div class="template-check">
+                                    <i data-lucide="check" width="14" height="14"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 模板3 -->
+                            <div class="template-card">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="科技开箱模板" class="template-img">
+                                <div class="template-overlay">科技开箱</div>
+                                <div class="template-check">
+                                    <i data-lucide="check" width="14" height="14"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 模板4 -->
+                            <div class="template-card">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="生活方式模板" class="template-img">
+                                <div class="template-overlay">生活方式</div>
+                                <div class="template-check">
+                                    <i data-lucide="check" width="14" height="14"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI助手选项 -->
+                    <div class="form-group">
+                        <div class="flex items-center justify-between">
+                            <label class="form-label mb-0">使用AI助手</label>
+                            <div class="relative inline-block w-10 align-middle select-none">
+                                <input type="checkbox" id="ai-toggle" class="sr-only" checked>
+                                <div class="block bg-gray-300 w-10 h-6 rounded-full"></div>
+                                <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-4"></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">AI将帮助你完善分镜细节并提供创意建议</p>
+                    </div>
+                    
+                    <!-- 创建按钮 -->
+                    <div class="flex mt-8">
+                        <a href="editor.html" class="btn btn-primary w-full py-3">
+                            创建项目并开始设计
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="tab-bar">
+            <a href="home.html" class="tab-item" id="home-tab">
+                <i data-lucide="home" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">首页</span>
+            </a>
+            <a href="create.html" class="tab-item active" id="create-tab">
+                <i data-lucide="plus-square" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">创建</span>
+            </a>
+            <a href="ai-assistant.html" class="tab-item" id="ai-tab">
+                <i data-lucide="sparkles" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">AI助手</span>
+            </a>
+            <a href="editor.html" class="tab-item" id="projects-tab">
+                <i data-lucide="folder" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">项目</span>
+            </a>
+            <a href="profile.html" class="tab-item" id="profile-tab">
+                <i data-lucide="user" class="tab-icon" width="24" height="24"></i>
+                <span class="tab-label">我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 根据当前页面路径激活对应的标签
+        document.addEventListener('DOMContentLoaded', function() {
+            // 模板选择功能
+            const templateCards = document.querySelectorAll('.template-card');
+            templateCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    templateCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // 切换按钮样式
+            const toggle = document.getElementById('ai-toggle');
+            const dot = document.querySelector('.dot');
+            
+            toggle.addEventListener('change', function() {
+                if (this.checked) {
+                    dot.classList.add('translate-x-4');
+                    dot.classList.remove('translate-x-0');
+                } else {
+                    dot.classList.remove('translate-x-4');
+                    dot.classList.add('translate-x-0');
+                }
+            });
+            
+            // 标签选择
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('tag-blue');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
